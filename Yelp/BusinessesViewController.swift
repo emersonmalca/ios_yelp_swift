@@ -17,6 +17,9 @@ class BusinessesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.estimatedRowHeight = 140
+        tableView.rowHeight = UITableViewAutomaticDimension
+        
         Business.searchWithTerm(term: "Thai", completion: { (businesses: [Business]?, error: Error?) -> Void in
             
                 self.businesses = businesses
@@ -46,7 +49,7 @@ extension BusinessesViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView .dequeueReusableCell(withIdentifier: "BusinessCell", for: indexPath) as! BusinessCell
+        let cell = tableView .dequeueReusableCell(withIdentifier: "StackedBusinessCell", for: indexPath) as! BusinessCell
         
         let business = businesses![indexPath.row]
         cell.update(withBusiness: business)
